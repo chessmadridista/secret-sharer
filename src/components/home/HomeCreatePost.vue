@@ -27,14 +27,16 @@ function createNewPost() {
             <v-col>
                 <v-card>
                     <v-card-title class="text-center text-primary">Create post</v-card-title>
-                    <v-card-text>
+                    <v-card-text class="mt-6">
                         <v-textarea
+                            density="compact"
                             label="Title"
                             v-model="title"
                             rows="1"
                             auto-grow
                         />
                         <v-textarea
+                            density="compact"
                             label="Body"
                             v-model="body"
                             rows="4"
