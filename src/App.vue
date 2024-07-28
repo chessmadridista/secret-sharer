@@ -24,3 +24,8 @@ function showHeader() {
     </v-main>
   </v-app>
 </template>
+<style scoped>
+.v-main {
+  background: rgb(237, 241, 255);
+}
+</style>
