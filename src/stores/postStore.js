@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useBucketListStore = defineStore('bucketListStore', () => {
+export const usePostStore = defineStore('postStore', () => {
     const bucketLists = ref([]);
     const bucket = ref(false);
     const createNewBucketDialog = ref(false);
