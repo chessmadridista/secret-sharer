@@ -21,7 +21,7 @@ export const usePostStore = defineStore('postStore', () => {
     ]);
 
     function createNewPost(post) {
-        bucketLists.value.push(post)
+        posts.value.push(post)
     }
 
     return {

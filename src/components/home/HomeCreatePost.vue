@@ -1,13 +1,24 @@
 <script setup>
 import {ref} from 'vue'
-import { usePostStore } from '@/stores'
+import { usePostStore, useGeneralStore } from '@/stores'
 
 const title = ref('')
 const body = ref('')
+const generalStore = useGeneralStore()
 const postStore = usePostStore()
 
 function createNewPost() {
-
+    const post = {
+        id: postStore.posts.length,
+        title: title.value,
+        body: body.value,
+    }
+    postStore.createNewPost(post)
+    title.value = ''
+    body.value = ''
+    generalStore.setSnackbarMessage('The post has been created successfully.')
+    generalStore.setSnackbarColor('success')
+    generalStore.showSnackbar()
 }
 </script>
 <template>
