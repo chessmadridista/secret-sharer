@@ -6,7 +6,7 @@ export const usePostStore = defineStore('postStore', () => {
         {
             "id": 0,
             "title": "A Betrayal of Trust",
-            "body": "This is my full story. I had a close friend who trusted me with their deepest secret. They told me about a personal struggle they were facing, and in a moment of weakness, I shared that information with someone else. It spread quickly, and my friend found out. The look of hurt and betrayal on their face is something I can never forget. We haven’t spoken since, and I regret my actions every day."
+            "body": "This is my full story.\n\nI had a close friend who trusted me with their deepest secret. They told me about a personal struggle they were facing, and in a moment of weakness, I shared that information with someone else. It spread quickly, and my friend found out. The look of hurt and betrayal on their face is something I can never forget. We haven’t spoken since, and I regret my actions every day."
         },
         {
             "id": 1,
