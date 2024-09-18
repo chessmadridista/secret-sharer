@@ -19,13 +19,28 @@ export const usePostStore = defineStore('postStore', () => {
             "body": "This is my full story. One night, I was driving home after a party, slightly intoxicated. I lost control of the car and hit a parked vehicle. Panicked, I fled the scene and never reported the accident. The owner of the vehicle probably suffered a lot due to my actions, and I’ve kept this secret buried, too ashamed and scared to come forward. The guilt eats at me, knowing I escaped responsibility."
         }
     ]);
+    const postStartIndex = ref(0)
+    const postEndIndex = ref(5)
 
     function createNewPost(post) {
         posts.value.push(post)
     }
 
+    function addRetrievedPosts(retrievedPosts) {
+        posts.value  = [...posts.value, ...retrievedPosts]
+    }
+
+    function increasePostFetchIndices() {
+        postStartIndex.value += 5
+        postEndIndex.value += 5
+    }
+
     return {
         posts,
+        postStartIndex,
+        postEndIndex,
         createNewPost,
+        increasePostFetchIndices,
+        addRetrievedPosts,
     }
 })

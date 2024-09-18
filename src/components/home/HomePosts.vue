@@ -1,7 +1,35 @@
 <script setup>
-import {usePostStore} from '@/stores'
+import { useGeneralStore, usePostStore } from '@/stores'
+import { onBeforeMount } from 'vue';
 
+const generalStore = useGeneralStore()
 const postStore = usePostStore()
+
+function getLatestEntries() {
+    const startIndex = postStore.postStartIndex
+    const endIndex = postStore.postEndIndex
+    fetch(`http://localhost:5000/get-posts?start=${startIndex}&end=${endIndex}`)
+    .then(response => response.json())
+    .then((data) => {
+        console.log(data)
+        postStore.addRetrievedPosts(data.posts)
+        generalStore.setSnackbarColor('success')
+        generalStore.setSnackbarMessage('Welcome back!')
+    })
+    .catch((error) => {
+        console.error('Error:', error)
+        generalStore.setSnackbarColor('error')
+        generalStore.setSnackbarMessage("There is some issue with the internet connection.")
+    })
+    .finally(() => {
+        generalStore.showSnackbar()
+    });
+
+}
+
+onBeforeMount(() => {
+    getLatestEntries()
+})
 </script>
 <template>
     <v-container>
