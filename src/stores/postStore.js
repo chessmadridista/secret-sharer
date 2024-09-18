@@ -23,7 +23,7 @@ export const usePostStore = defineStore('postStore', () => {
     const postEndIndex = ref(5)
 
     function createNewPost(post) {
-        posts.value.push(post)
+        posts.value = [post, ...posts.value]
     }
 
     function addRetrievedPosts(retrievedPosts) {
