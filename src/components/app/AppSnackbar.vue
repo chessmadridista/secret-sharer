@@ -8,6 +8,7 @@ const generalStore = useGeneralStore()
     v-model="generalStore.snackbar"
     :color="generalStore.snackbarColor"
     location="top right"
+    close-on-content-click
   >
     {{ generalStore.snackbarMessage }}
   </v-snackbar>
