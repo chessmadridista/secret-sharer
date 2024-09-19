@@ -19,7 +19,7 @@ function getLatestEntries() {
     .catch((error) => {
         console.error('Error:', error)
         generalStore.setSnackbarColor('error')
-        generalStore.setSnackbarMessage("There is some issue with the internet connection.")
+        generalStore.setSnackbarMessage("Either there is some issue with the server or with the internet connection.")
     })
     .finally(() => {
         generalStore.showSnackbar()
