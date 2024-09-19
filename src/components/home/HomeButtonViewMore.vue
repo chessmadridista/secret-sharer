@@ -12,6 +12,7 @@ function viewMore() {
     .then(response => response.json())
     .then((data) => {
         console.log(data)
+        postStore.addRetrievedPosts(data.posts)
         generalStore.setSnackbarColor('success')
         generalStore.setSnackbarMessage('New posts have been retrieved successfully.')
     })

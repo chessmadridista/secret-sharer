@@ -2,7 +2,9 @@
 import {ref} from 'vue'
 import { usePostStore, useGeneralStore } from '@/stores'
 import { v4 as uuidv4 } from 'uuid';
+import { inject } from 'vue';
 
+const axios = inject('axios')
 const title = ref('')
 const body = ref('')
 const titleInput = ref(null)
@@ -21,12 +23,27 @@ async function createNewPost() {
             title: title.value,
             body: body.value,
         }
-        postStore.createNewPost(post)
-        title.value = null
-        body.value = null
-        generalStore.setSnackbarMessage('The post has been created successfully.')
-        generalStore.setSnackbarColor('success')
-        generalStore.showSnackbar()
+        const endPoint = '/submit-post'
+        const formData = new FormData()
+        formData.append('post_title', title.value)
+        formData.append('post_body', body.value)
+        axios.post(endPoint, formData)
+        .then((response) => {
+            console.log(response);
+            generalStore.setSnackbarMessage('The post has been created successfully.')
+            generalStore.setSnackbarColor('success')
+            postStore.createNewPost(post)
+            title.value = null
+            body.value = null
+        })
+        .catch((error) => {
+            console.error(error);
+            generalStore.setSnackbarMessage('There was some error while creating the post.')
+            generalStore.setSnackbarColor('error')
+        })
+        .finally(() => {
+            generalStore.showSnackbar()
+        })
     }
 }
 </script>

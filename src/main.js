@@ -19,7 +19,6 @@ const vuetify = createVuetify({
 })
 
 axios.defaults.baseURL = 'http://127.0.0.1:5000'
-axios.defaults.withCredentials = true
 
 app.use(createPinia())
 app.use(router)
