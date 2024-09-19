@@ -8,7 +8,13 @@ const postStore = usePostStore()
 function getLatestEntries() {
     const startIndex = postStore.postStartIndex
     const endIndex = postStore.postEndIndex
-    fetch(`http://localhost:5000/get-posts?start=${startIndex}&end=${endIndex}`)
+    let baseUrl
+    if (process.env.NODE_ENV === 'development') {
+        baseUrl = 'http://127.0.0.1:5000'
+    } else if (process.env.NODE_ENV === 'production') {
+        baseUrl = 'https://secret-sharer-api.nostalgician.in'
+    }
+    fetch(`${baseUrl}/get-posts?start=${startIndex}&end=${endIndex}`)
     .then(response => response.json())
     .then((data) => {
         console.log(data)
